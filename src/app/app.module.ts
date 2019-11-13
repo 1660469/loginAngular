@@ -10,13 +10,14 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
+import { FieldErrorDisplayComponent } from './login/login-form/field-error-display/field-error-display.component';
 import { CommonModule } from '@angular/common';
+import { LoginFormComponent } from './login/login-form/login-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    FieldErrorDisplayComponent
+    FieldErrorDisplayComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +28,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FieldErrorDisplayComponent]
 })
 export class AppModule { }
