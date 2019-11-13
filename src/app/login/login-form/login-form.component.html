@@ -11,18 +11,20 @@
               <!-- [ngclass]="displayFieldCss('username')" -->
             <label for="username" class="control-label required">Tài khoản</label>
             <input type="text" id="username" class="form-control" formControlName="username">
-            <app-field-error-display displayError="true" errorMsg="Please inform your name">
-                <!-- isFieldValid('username') -->
-            </app-field-error-display>
+            <!-- <app-field-error-display displayError="true" errorMsg="Please inform your name">
+              
+            </app-field-error-display> -->
+              <!-- isFieldValid('username') -->
           </div>
 
           <div class="form-group" >
               <!-- [ngClass]="displayFieldCss('password')" -->
             <label for="password" class="control-label required">Mật khẩu</label>
             <input type="text" id="password" class="form-control" formControlName="password">
-            <app-field-error-display displayError="true" errorMsg="Please inform your name">
-                <!-- isFieldValid('password') -->
-            </app-field-error-display>
+            <!-- <app-field-error-display displayError="true" errorMsg="Please inform your name">
+               
+            </app-field-error-display> -->
+             <!-- isFieldValid('password') -->
           </div>
           <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
         </div>
