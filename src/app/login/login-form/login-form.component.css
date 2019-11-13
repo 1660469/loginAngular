@@ -1,0 +1,18 @@
+.bg{
+    background: white;
+}
+.bd{
+    min-height: 100vh;
+    background-image: url(/assets/images/background2.jpg);
+}
+.swing{
+    margin-left: 117px;
+    padding-top: 136px;
+}
+.control-label.required:after { 
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 5px;
+    top:7px;
+  }
