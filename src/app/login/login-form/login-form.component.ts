@@ -13,11 +13,13 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
     this.formHBC = this.fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.minLength(6)]
     });
+    console.log('ok');
   }
   isFieldValid(field: string) {
     return !this.formHBC.get(field).valid && this.formHBC.get(field).touched;
+    
   }
   displayFieldCss(field: string) {
     return {
@@ -34,8 +36,12 @@ export class LoginFormComponent implements OnInit {
         this.validateAllFormFields(control);
       }
     })
+    
+
   }
   onSubmit() {
+    debugger
+    
     if (this.formHBC.valid) {
       console.log('form submitted');
     } else {
