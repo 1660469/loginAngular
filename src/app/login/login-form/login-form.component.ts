@@ -13,7 +13,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
     this.formHBC = this.fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.minLength(6)]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
     console.log('ok');
   }
@@ -40,12 +40,23 @@ export class LoginFormComponent implements OnInit {
 
   }
   onSubmit() {
-    debugger
-    
     if (this.formHBC.valid) {
       console.log('form submitted');
     } else {
       this.validateAllFormFields(this.formHBC);
+    }
+  }
+  messageError(field: string){
+    console.log('this.formHBC.get(field).errors', field, this.formHBC.get(field).errors);
+    if(!this.formHBC.get(field).errors){
+      return '';
+    }
+    if(this.formHBC.get(field).errors.required){
+      return 'Please inform this control.';
+    }
+    if (this.formHBC.get(field).errors.minLength){
+      console.log('check', this.isFieldValid('password'));
+      return 'Please inform at least 6 characters.';
     }
   }
 }
