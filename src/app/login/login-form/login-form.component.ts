@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { StudentService } from 'src/app/student.service';
 
 @Component({
   selector: 'app-login-form',
@@ -8,7 +9,10 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 })
 export class LoginFormComponent implements OnInit {
   formHBC: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  username;
+  password;
+  result;
+  constructor(private fb: FormBuilder, private studentService: StudentService) { }
 
   ngOnInit() {
     this.formHBC = this.fb.group({
@@ -19,7 +23,6 @@ export class LoginFormComponent implements OnInit {
   }
   isFieldValid(field: string) {
     return !this.formHBC.get(field).valid && this.formHBC.get(field).touched;
-    
   }
   displayFieldCss(field: string) {
     return {
@@ -36,25 +39,31 @@ export class LoginFormComponent implements OnInit {
         this.validateAllFormFields(control);
       }
     })
-    
-
   }
   onSubmit() {
     if (this.formHBC.valid) {
       console.log('form submitted');
-    } else {
+    } else{
       this.validateAllFormFields(this.formHBC);
     }
+    this.username = this.formHBC.value.username;
+    this.password = this.formHBC.value.password;
+    this.result = this.studentService.arrayStudent.find(x => {
+      if(x.name === this.username && x.password === this.password){
+        console.log('Login success!');
+      }
+    }
+    );
+    console.log(' this.result ',  this.result );
   }
-  messageError(field: string){
-    console.log('this.formHBC.get(field).errors', field, this.formHBC.get(field).errors);
-    if(!this.formHBC.get(field).errors){
+  messageError(field: string) {
+    if (!this.formHBC.get(field).errors) {
       return '';
     }
-    if(this.formHBC.get(field).errors.required){
+    if (this.formHBC.get(field).errors.required) {
       return 'Please inform this control.';
     }
-    if (this.formHBC.get(field).errors.minLength){
+    if (this.formHBC.get(field).errors.minlength) {
       console.log('check', this.isFieldValid('password'));
       return 'Please inform at least 6 characters.';
     }
