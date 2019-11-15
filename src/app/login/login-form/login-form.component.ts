@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { StudentService } from 'src/app/student.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -13,12 +13,18 @@ export class LoginFormComponent implements OnInit {
   username;
   password;
   result;
-  constructor(private fb: FormBuilder, private studentService: StudentService, private router: Router) { }
+  returnUrl;
+  constructor(
+    private fb: FormBuilder,
+    private studentService: StudentService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    if(JSON.parse(localStorage.getItem('this.result'))){
+    if (JSON.parse(localStorage.getItem('this.result'))) {
       this.router.navigate(['layout/liststudent']);
     }
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'layout/liststudent';
     this.formHBC = this.fb.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -64,7 +70,7 @@ export class LoginFormComponent implements OnInit {
     // console.log(localStorage.getItem('this.result'));
     if (this.result != null) {
       alert('Ban da dang nhap thanh cong!');
-      this.router.navigate(['layout/liststudent']);
+      this.router.navigate([this.returnUrl]);
     } else {
       alert('ten dang nhap hoac mat khau khong dung. Xin nhap lai!');
     }

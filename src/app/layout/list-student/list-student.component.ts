@@ -12,12 +12,12 @@ export class ListStudentComponent implements OnInit {
   constructor(private studentService: StudentService, private route: Router) { }
   ngOnInit() {
   }
-  deleteLocalstorage(){
+  deleteLocalstorage() {
     console.log(JSON.parse(localStorage.getItem('this.result')));
     this.route.navigate(['']);
     //this.removeAccount = JSON.parse(localStorage.getItem('this.result'));
     localStorage.removeItem('this.result');
-    
+
   }
 
 }
