@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/student.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-student',
@@ -7,10 +8,17 @@ import { StudentService } from 'src/app/student.service';
   styleUrls: ['./list-student.component.css']
 })
 export class ListStudentComponent implements OnInit {
-
-  constructor(private studentService: StudentService) { }
-
+  removeAccount;
+  constructor(private studentService: StudentService, private route: Router) { }
   ngOnInit() {
+  }
+  deleteLocalstorage(){
+    console.log(JSON.parse(localStorage.getItem('this.result')));
+    this.route.navigate(['']);
+    this.removeAccount = JSON.parse(localStorage.getItem('this.result'));
+    localStorage.removeItem('this.removeAccount');
+    localStorage.clear();
+    
   }
 
 }
