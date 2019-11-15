@@ -16,6 +16,9 @@ export class LoginFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
+    if(JSON.parse(localStorage.getItem('this.result'))){
+      this.router.navigate(['layout/liststudent']);
+    }
     this.formHBC = this.fb.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -51,10 +54,14 @@ export class LoginFormComponent implements OnInit {
     this.password = this.formHBC.value.password;
     this.result = this.studentService.arrayStudent.find(x => {
       if (x.name === this.username && x.password === this.password) {
+        console.log('x', x);
         return x;
       }
     }
     );
+    window.localStorage['this.result'] = JSON.stringify(this.result);
+    // localStorage.setItem('this.result', this.result.length);
+    // console.log(localStorage.getItem('this.result'));
     if (this.result != null) {
       alert('Ban da dang nhap thanh cong!');
       this.router.navigate(['layout/liststudent']);
