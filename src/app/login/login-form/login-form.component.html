@@ -5,7 +5,7 @@
         <img src="assets/images/Logo2.jpg" class="img-fluid">
       </div>
       <div class="col-lg-4 bg">
-        <div class="form-horizontal" [formGroup]="formHBC">
+        <div class="form-horizontal" [formGroup]="formHBC" (submit)="forEnter()">
           <div class="font-weight-bold p-4 text-center">ĐĂNG NHẬP</div>
           <div class="form-group">
             <label for="username" class="control-label required">Tài khoản</label>
@@ -23,7 +23,7 @@
               
             </span>
           </div>
-          <button type="submit" (click)="onSubmit()" class="btn btn-primary w-100">Đăng nhập</button>
+          <button  type="submit" (click)="onSubmit()" class="btn btn-primary w-100">Đăng nhập</button>
         </div>
       </div>
     </div>
