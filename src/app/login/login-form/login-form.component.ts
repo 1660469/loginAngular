@@ -51,6 +51,7 @@ export class LoginFormComponent implements OnInit {
     this.result = this.studentService.arrayStudent.find(x => {
       if(x.name === this.username && x.password === this.password){
         console.log('Login success!');
+        alert('Ban da dang nhap thanh cong!')
       }
     }
     );

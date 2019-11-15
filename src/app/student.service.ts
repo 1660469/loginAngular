@@ -10,7 +10,7 @@ export class StudentService {
     {
       id: 1,
       name: 'Quang',
-      password: '123',
+      password: '123456',
     },
     {
       id: 2,
