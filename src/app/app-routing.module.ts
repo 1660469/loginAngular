@@ -9,6 +9,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
+  { path: 'layout', loadChildren: './layout/layout.module#LayoutModule'}
 ];
 @NgModule({
   declarations: [],

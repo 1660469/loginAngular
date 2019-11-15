@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { StudentService } from 'src/app/student.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -12,7 +13,7 @@ export class LoginFormComponent implements OnInit {
   username;
   password;
   result;
-  constructor(private fb: FormBuilder, private studentService: StudentService) { }
+  constructor(private fb: FormBuilder, private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
     this.formHBC = this.fb.group({
@@ -43,19 +44,23 @@ export class LoginFormComponent implements OnInit {
   onSubmit() {
     if (this.formHBC.valid) {
       console.log('form submitted');
-    } else{
+    } else {
       this.validateAllFormFields(this.formHBC);
     }
     this.username = this.formHBC.value.username;
     this.password = this.formHBC.value.password;
     this.result = this.studentService.arrayStudent.find(x => {
-      if(x.name === this.username && x.password === this.password){
-        console.log('Login success!');
-        alert('Ban da dang nhap thanh cong!')
+      if (x.name === this.username && x.password === this.password) {
+        return x;
       }
     }
     );
-    console.log(' this.result ',  this.result );
+    if (this.result != null) {
+      alert('Ban da dang nhap thanh cong!');
+      this.router.navigate(['layout/liststudent']);
+    } else {
+      alert('ten dang nhap hoac mat khau khong dung. Xin nhap lai!');
+    }
   }
   messageError(field: string) {
     if (!this.formHBC.get(field).errors) {
