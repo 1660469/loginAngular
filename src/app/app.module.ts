@@ -6,10 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NgxLoadingModule } from 'ngx-loading';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { InputUnitDirective } from './shared/directive/input-unit.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -17,8 +21,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxLoadingModule.forRoot({}),
+    AngularFontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
+  // exports: [FormsModule]
 })
 export class AppModule { }

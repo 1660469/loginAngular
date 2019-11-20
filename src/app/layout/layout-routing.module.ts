@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { ListStudentComponent } from './list-student/list-student.component';
 import { DetailStudentComponent } from './detail-student/detail-student.component';
+import { EditStudentComponent } from './edit-student/edit-student.component';
+import { CreatestudentComponent } from './createstudent/createstudent.component';
 
 const routes: Routes = [
   {
@@ -13,8 +15,14 @@ const routes: Routes = [
         path: 'liststudent', component: ListStudentComponent,
       },
       {
-        path: 'detailstudent', component: DetailStudentComponent,
-      }
+        path: 'detailstudent/:id', component: DetailStudentComponent,
+      },
+      {
+        path: 'editstudent/:id', component: EditStudentComponent,
+      },
+      {
+        path: 'createstudent', component: CreatestudentComponent,
+      },
     ]
   },
 ];

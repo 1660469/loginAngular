@@ -3,6 +3,10 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { StudentService } from 'src/app/student.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+//
+import { ViewChild, TemplateRef } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+// import { NgxLoadingComponent, ngxLoadingAnimationTypes } from 'ngx-loading/public_api';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -14,17 +18,55 @@ export class LoginFormComponent implements OnInit {
   password;
   result;
   returnUrl;
+  // PrimaryWhite = '#ffffff';
+  // SecondaryGrey = '#ccc';
+  // PrimaryRed = '#dd0031';
+  // SecondaryBlue = '#006ddd';
+  // @ViewChild('ngxLoading', { static: false }) ngxLoadingComponent: NgxLoadingComponent;
+  // @ViewChild('customLoadingTemplate', { static: false }) customLoadingTemplate: TemplateRef<any>;
+  // public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+  // public loading = true;
+  // public primaryColour = this.PrimaryWhite;
+  // public secondaryColour = this.SecondaryGrey;
+  // public coloursEnabled = false;
+  // public loadingTemplate: TemplateRef<any>;
+  // public config = { animationType: ngxLoadingAnimationTypes.none, primaryColour: this.primaryColour, secondaryColour: this.secondaryColour, tertiaryColour: this.primaryColour, backdropBorderRadius: '3px' };
   constructor(
     private fb: FormBuilder,
     private studentService: StudentService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer) {
+  }
+  // public toggleColours(): void {
+  //   this.coloursEnabled = !this.coloursEnabled;
+
+  //   if (this.coloursEnabled) {
+  //     this.primaryColour = this.PrimaryRed;
+  //     this.secondaryColour = this.SecondaryBlue;
+  //   } else {
+  //     this.primaryColour = this.PrimaryWhite;
+  //     this.secondaryColour = this.SecondaryGrey;
+  //   }
+  // }
+
+  // toggleTemplate(): void {
+  //   if (this.loadingTemplate) {
+  //     this.loadingTemplate = null;
+  //   } else {
+  //     this.loadingTemplate = this.customLoadingTemplate;
+  //   }
+  // }
+
+  // public showAlert(): void {
+  //   alert('ngx-loading rocks!');
+  // }
 
   ngOnInit() {
     if (JSON.parse(localStorage.getItem('this.result'))) {
       this.router.navigate(['layout/liststudent']);
     }
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'layout/liststudent';
+    this.returnUrl = this.route.snapshot.queryParams[' returnUrl'] || 'layout/liststudent';
     this.formHBC = this.fb.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -69,10 +111,14 @@ export class LoginFormComponent implements OnInit {
     // localStorage.setItem('this.result', this.result.length);
     // console.log(localStorage.getItem('this.result'));
     if (this.result != null) {
-      alert('Ban da dang nhap thanh cong!');
       this.router.navigate([this.returnUrl]);
     } else {
       alert('ten dang nhap hoac mat khau khong dung. Xin nhap lai!');
+    }
+  }
+  keyDownFunction(event) {
+    if (event.keyCode === 13) {
+      this.onSubmit();
     }
   }
   messageError(field: string) {
@@ -87,4 +133,5 @@ export class LoginFormComponent implements OnInit {
       return 'Please inform at least 6 characters.';
     }
   }
+
 }

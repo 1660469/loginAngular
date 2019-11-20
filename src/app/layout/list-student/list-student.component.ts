@@ -19,5 +19,15 @@ export class ListStudentComponent implements OnInit {
     localStorage.removeItem('this.result');
 
   }
-
+  deleteObject(index: number) {
+    this.studentService.arrayStudent.find((x, indexItem) => {
+      if (indexItem === index) {
+        this.studentService.arrayStudent.splice(index, 1);
+      }
+    }
+    );
+  }
+  createnew(){
+    return this.route.navigate(['layout/createstudent']);
+  }
 }

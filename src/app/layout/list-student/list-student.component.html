@@ -1,7 +1,46 @@
-<div class="container">
+<!-- <div class="container">
     <p>Danh sách sinh viên:</p>
     <ul *ngFor="let student of studentService.arrayStudent">
         <li>{{student.name}}</li>
     </ul>
     <button type="button" (click)="deleteLocalstorage()">Log out</button>
+</div> -->
+
+<div class="container">
+  <table class="table" style="font-size: 13px;">
+    <thead>
+      <tr>
+        <th scope="col">Mã Sinh Viên</th>
+        <th scope="col">Tên Sinh Viên</th>
+        <th scope="col">Địa Chỉ Nhà</th>
+        <th scope="col">SDT</th>
+        <th scope="col">Giới tính</th>
+        <th scope="col">Ngày Sinh</th>
+        <th scope="col">TB Diem</th>
+        <th scope="col">Khoa Đào Tạo</th>
+        <th scope="col">Chuyên Ngành</th>
+        <th scope="col">Thao Tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of studentService.arrayStudent; let i = index">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.phonenumber}}</td>
+        <td>{{item.sex}}</td>
+        <td>{{item.dob}}</td>
+        <td>{{item.score}}</td>
+        <td>{{item.faculty}}</td>
+        <td>{{item.mainfaculty}}</td>
+        <td scope="row"><a [routerLink]="['../detailstudent', item.id]"><i class="fa fa-eye pr-2 poiter"></i> </a><a
+            [routerLink]="['../editstudent',item.id]"><i class="fa fa-pencil pr-2 poiter"></i></a><a
+            (click)="deleteObject(i)"><i class="fa fa-trash-o"></i></a></td>
+      </tr>
+      <tr>
+        <button (click)="createnew()">Create new</button>
+      </tr>
+
+    </tbody>
+  </table>
 </div>
