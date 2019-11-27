@@ -30,4 +30,5 @@ export class ListStudentComponent implements OnInit {
   createnew(){
     return this.route.navigate(['layout/createstudent']);
   }
+  
 }

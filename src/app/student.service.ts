@@ -18,6 +18,7 @@ export class StudentService {
       score: 0.2,
       faculty: 'Toán',
       mainfaculty: 'Toán - 1',
+      fee: 252123657
     },
     {
       id: 2,
@@ -30,6 +31,8 @@ export class StudentService {
       score: 8.2,
       faculty: 'Toán',
       mainfaculty: 'Toán - 1',
+      fee: 252123
+
     },
     {
       id: 3,
@@ -42,6 +45,8 @@ export class StudentService {
       score: 8.2,
       faculty: 'Toán',
       mainfaculty: 'Toán - 1',
+      fee: 252342
+
     },
   ];
 }

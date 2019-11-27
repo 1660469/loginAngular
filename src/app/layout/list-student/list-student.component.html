@@ -19,6 +19,7 @@
         <th scope="col">TB Diem</th>
         <th scope="col">Khoa Đào Tạo</th>
         <th scope="col">Chuyên Ngành</th>
+        <th scope="col">Tiền học phí</th>
         <th scope="col">Thao Tác</th>
       </tr>
     </thead>
@@ -30,9 +31,10 @@
         <td>{{item.phonenumber}}</td>
         <td>{{item.sex}}</td>
         <td>{{item.dob}}</td>
-        <td>{{item.score}}</td>
+        <td>{{item.score | score:10:50}}  </td>
         <td>{{item.faculty}}</td>
         <td>{{item.mainfaculty}}</td>
+        <td>{{item.fee | fee:location}}</td>
         <td scope="row"><a [routerLink]="['../detailstudent', item.id]"><i class="fa fa-eye pr-2 poiter"></i> </a><a
             [routerLink]="['../editstudent',item.id]"><i class="fa fa-pencil pr-2 poiter"></i></a><a
             (click)="deleteObject(i)"><i class="fa fa-trash-o"></i></a></td>
