@@ -15,12 +15,12 @@
         </div>
         <div class="form-group">
             <label>Phone number</label>
-            <input type="text" class="form-control" placeholder="Phone number" name="Phonenumber" appInputUnit
+            <input type="text" class="form-control" placeholder="Phone number" name="Phonenumber" appInputStudent
                 [(ngModel)]="student.phonenumber">
         </div>
         <div class="form-group">
             <label>Score</label>
-            <input type="text" class="form-control" placeholder="Score" appInputStudent [maxleng]="4" name="score"
+            <input type="text" class="form-control" placeholder="Score" appInputUnit [maxleng]="4" name="score"
                 [(ngModel)]="student.score">
         </div>
         <button type="submit" (click)="submit()" class="btn btn-primary">Submit</button>
