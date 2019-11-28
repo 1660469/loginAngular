@@ -5,15 +5,16 @@ import { InputPhonenumberDirective } from './directive/input-phonenumber.directi
 import { InputUnitDirective } from './directive/input-unit.directive';
 import { ScorePipe } from './pipes/score.pipe';
 import { FeePipe } from './pipes/fee.pipe';
+import { FeeDirective } from './directive/fee.directive';
 
 
 
 @NgModule({
-  declarations: [InputPhonenumberDirective, InputUnitDirective, ScorePipe, FeePipe],
+  declarations: [InputPhonenumberDirective, InputUnitDirective, ScorePipe, FeePipe, FeeDirective],
   imports: [
     CommonModule,
     FormsModule
   ],
-  exports: [FormsModule, InputPhonenumberDirective, InputUnitDirective, ScorePipe, FeePipe]
+  exports: [FormsModule, InputPhonenumberDirective, InputUnitDirective, ScorePipe, FeePipe, FeeDirective]
 })
 export class SharedModule { }
