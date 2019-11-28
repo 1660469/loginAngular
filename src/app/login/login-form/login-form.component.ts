@@ -62,6 +62,16 @@ export class LoginFormComponent implements OnInit {
   //   alert('ngx-loading rocks!');
   // }
 
+  public upperCasePw(control: AbstractControl) {
+    const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
+    if (strongRegex.test(control.value)) {
+      console.log('control.value', control.value);
+      return {validPw: true};
+    }
+    console.log('control.value', control.value);
+    return null;
+  }
+
   ngOnInit() {
     if (JSON.parse(localStorage.getItem('this.result'))) {
       this.router.navigate(['layout/liststudent']);
@@ -69,18 +79,11 @@ export class LoginFormComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams[' returnUrl'] || 'layout/liststudent';
     this.formHBC = this.fb.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6), this.Uppercasepw]]
+      password: ['', [Validators.required, Validators.minLength(6), this.upperCasePw]]
     });
-    console.log('ok');
+    console.log('ok', this.formHBC);
   }
-  Uppercasepw(control: AbstractControl) {
-    if (control.value > 0)
-    {
-      console.log('qqqqq');
-      return {validPw: true};
-    }
-    return null;
-  }
+  
   isFieldValid(field: string) {
     return !this.formHBC.get(field).valid && this.formHBC.get(field).touched;
   }
@@ -137,12 +140,10 @@ export class LoginFormComponent implements OnInit {
       return 'Please inform this control.';
     }
     if (this.formHBC.get(field).errors.minlength) {
-      console.log('check', this.isFieldValid('password'));
       return 'Please inform at least 6 characters.';
     }
     if (this.formHBC.get(field).errors.validPw) {
-      return 'Please inform password.';
+      return 'Please inform password contain at least 1 uppercase letter.';
     }
   }
-
 }

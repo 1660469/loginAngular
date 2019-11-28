@@ -19,9 +19,9 @@
             <input type="password" id="password" class="form-control" formControlName="password">
             <app-field-error-display [displayError]="isFieldValid('password')" [errorMsg]="messageError('password')">
             </app-field-error-display>
-            <span *ngIf= "FormHBC.get('password').errors?.Uppercasepw">
+            <!-- <span *ngIf= "formHBC.get('password').errors.validPw">
               Only for
-            </span>
+            </span> -->
           </div>
           <button type="submit" (click)="onSubmit()" class="btn btn-primary w-100">Đăng nhập</button>
         </div>

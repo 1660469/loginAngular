@@ -16,13 +16,21 @@
         </div>
         <div class="form-group">
             <label>Score</label>
-            <input type="text" class="form-control" placeholder="Score"  required maxlength="4" max=10 name="score"
+            <input type="text" class="form-control" placeholder="Score" required maxlength="4" max=10 name="score"
                 [(ngModel)]="student.score" appInputUnit>
         </div>
         <div class="form-group">
             <label>Fee</label>
-            <input type="text" class="form-control" placeholder="fee"  name="fee"
-                [(ngModel)]="student.fee" appFee>
+            <input type="text" class="form-control" placeholder="fee" name="fee" [(ngModel)]="student.fee" appFee>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" placeholder="type your email" name="email" ngModel #email="ngModel"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        </div>
+        <div *ngIf="email.touched">
+            <p *ngIf="email.errors?.required">Email is a required field!</p>
+            <p *ngIf="email.errors?.pattern">This is not a valid Email!!!</p>
         </div>
         <button type="submit" (click)="submit()" class="btn btn-primary">Submit</button>
         <button type="submit" [routerLink]="student.id ? ['../../liststudent'] : ['../liststudent']"
