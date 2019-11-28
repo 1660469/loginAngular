@@ -9,4 +9,5 @@ export class Student {
     score: number;
     faculty: string;
     mainfaculty: string;
+    fee: number;
 }

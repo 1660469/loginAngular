@@ -16,7 +16,6 @@ export class FormstudentComponent implements OnInit {
 
   ngOnInit() {
     console.log('this.student', this.student);
-    
   }
   submit(){
     this.submitStudent.emit(this.student);

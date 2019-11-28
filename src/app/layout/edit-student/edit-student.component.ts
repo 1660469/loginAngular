@@ -9,7 +9,7 @@ import { StudentService } from 'src/app/student.service';
   styleUrls: ['./edit-student.component.css']
 })
 export class EditStudentComponent implements OnInit {
-  student;
+  student: Student;
   id: number;
   constructor(
     private route: ActivatedRoute,
@@ -18,7 +18,7 @@ export class EditStudentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.student = new Student();
+    // this.student = new Student();
     this.id = +this.route.snapshot.paramMap.get('id'); // nho ep kieu
     this.student = this.studentService.arrayStudent.find(x => x.id === this.id);
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { StudentService } from 'src/app/student.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -69,9 +69,17 @@ export class LoginFormComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams[' returnUrl'] || 'layout/liststudent';
     this.formHBC = this.fb.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6), this.Uppercasepw]]
     });
     console.log('ok');
+  }
+  Uppercasepw(control: AbstractControl) {
+    if (control.value > 0)
+    {
+      console.log('qqqqq');
+      return {validPw: true};
+    }
+    return null;
   }
   isFieldValid(field: string) {
     return !this.formHBC.get(field).valid && this.formHBC.get(field).touched;
@@ -131,6 +139,9 @@ export class LoginFormComponent implements OnInit {
     if (this.formHBC.get(field).errors.minlength) {
       console.log('check', this.isFieldValid('password'));
       return 'Please inform at least 6 characters.';
+    }
+    if (this.formHBC.get(field).errors.validPw) {
+      return 'Please inform password.';
     }
   }
 
