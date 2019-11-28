@@ -73,7 +73,9 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (JSON.parse(localStorage.getItem('this.result'))) {
+    console.log('23', localStorage.getItem('this.result'));
+    // tslint:disable-next-line: max-line-length
+    if (localStorage.getItem('this.result') && (typeof localStorage.getItem('this.result') !== 'undefined') && JSON.parse(localStorage.getItem('this.result'))) {
       this.router.navigate(['layout/liststudent']);
     }
     this.returnUrl = this.route.snapshot.queryParams[' returnUrl'] || 'layout/liststudent';
@@ -83,7 +85,7 @@ export class LoginFormComponent implements OnInit {
     });
     console.log('ok', this.formHBC);
   }
-  
+
   isFieldValid(field: string) {
     return !this.formHBC.get(field).valid && this.formHBC.get(field).touched;
   }
@@ -104,27 +106,21 @@ export class LoginFormComponent implements OnInit {
     })
   }
   onSubmit() {
-    if (this.formHBC.valid) {
-      console.log('form submitted');
-    } else {
-      this.validateAllFormFields(this.formHBC);
+    this.validateAllFormFields(this.formHBC);
+    if (!this.formHBC.valid) {
+      return;
     }
     this.username = this.formHBC.value.username;
     this.password = this.formHBC.value.password;
     this.result = this.studentService.arrayStudent.find(x => {
       if (x.name === this.username && x.password === this.password) {
-        console.log('x', x);
         return x;
       }
     }
     );
     window.localStorage['this.result'] = JSON.stringify(this.result);
-    // localStorage.setItem('this.result', this.result.length);
-    // console.log(localStorage.getItem('this.result'));
     if (this.result != null) {
       this.router.navigate([this.returnUrl]);
-    } else {
-      alert('ten dang nhap hoac mat khau khong dung. Xin nhap lai!');
     }
   }
   keyDownFunction(event) {
