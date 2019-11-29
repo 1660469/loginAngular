@@ -10,7 +10,7 @@ export class StudentService {
     {
       id: 1,
       name: 'Quang',
-      password: '123456',
+      password: 'T123456',
       address: '215 Phan Đăng Lưu',
       phonenumber: '0929172678',
       sex: 'Nam',

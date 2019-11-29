@@ -63,7 +63,7 @@ export class LoginFormComponent implements OnInit {
   // }
 
   public upperCasePw(control: AbstractControl) {
-    if (!control.value.match(new RegExp("^[a-z]+$"))) {
+    if (!control.value.match(new RegExp("[A-Z]"))) {
       return {validPw: true};
     }
     return null;

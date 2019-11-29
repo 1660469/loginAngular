@@ -20,7 +20,7 @@ export class EditStudentComponent implements OnInit {
   ngOnInit() {
     // this.student = new Student();
     this.id = +this.route.snapshot.paramMap.get('id'); // nho ep kieu
-    this.student = this.studentService.arrayStudent.find(x => x.id === this.id);
+    this.student = {...this.studentService.arrayStudent.find(x => x.id === this.id)};
   }
   submit(event) {
     this.studentService.arrayStudent.some(x => {
