@@ -30,5 +30,9 @@ export class ListStudentComponent implements OnInit {
   createnew(){
     return this.route.navigate(['layout/createstudent']);
   }
+  logout(){
+    this.deleteLocalstorage();
+    return this.route.navigate(['login/loginform']);
+  }
   
 }

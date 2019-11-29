@@ -63,19 +63,15 @@ export class LoginFormComponent implements OnInit {
   // }
 
   public upperCasePw(control: AbstractControl) {
-    const strongRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
-    if (strongRegex.test(control.value)) {
-      console.log('control.value', control.value);
+    if (!control.value.match(new RegExp("^[a-z]+$"))) {
       return {validPw: true};
     }
-    console.log('control.value', control.value);
     return null;
   }
 
   ngOnInit() {
-    console.log('23', localStorage.getItem('this.result'));
     // tslint:disable-next-line: max-line-length
-    if (localStorage.getItem('this.result') && (typeof localStorage.getItem('this.result') !== 'undefined') && JSON.parse(localStorage.getItem('this.result'))) {
+    if (localStorage.getItem('this.result') && (localStorage.getItem('this.result') !== 'undefined') && JSON.parse(localStorage.getItem('this.result'))) {
       this.router.navigate(['layout/liststudent']);
     }
     this.returnUrl = this.route.snapshot.queryParams[' returnUrl'] || 'layout/liststudent';
@@ -83,7 +79,6 @@ export class LoginFormComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6), this.upperCasePw]]
     });
-    console.log('ok', this.formHBC);
   }
 
   isFieldValid(field: string) {

@@ -14,9 +14,10 @@ export class InputPhonenumberDirective {
   }
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 46 || charCode > 57 || charCode === 47)) {
+    if (charCode > 31 && (charCode < 46 || charCode > 57 || charCode === 47) && this.el.nativeElement.event) {
       return false;
     }
+    console.log('this.el.nativeElement.event', this.el.nativeElement.charCode);
     return true;
   }
 }

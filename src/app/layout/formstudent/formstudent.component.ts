@@ -20,4 +20,7 @@ export class FormstudentComponent implements OnInit {
   submit(){
     this.submitStudent.emit(this.student);
   }
+  cancel(){
+    return this.routeOther.navigate(['layout/liststudent']);
+  }
 }

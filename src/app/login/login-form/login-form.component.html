@@ -16,7 +16,7 @@
 
           <div class="form-group">
             <label for="password" class="control-label required">Mật khẩu</label>
-            <input type="password" id="password" class="form-control" formControlName="password">
+            <input type="password" id="password" class="form-control" formControlName="password" >
             <app-field-error-display [displayError]="isFieldValid('password')" [errorMsg]="messageError('password')">
             </app-field-error-display>
             <!-- <span *ngIf= "formHBC.get('password').errors.validPw">

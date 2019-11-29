@@ -1,9 +1,14 @@
 <div class="container" *ngIf="student">
-    <form class="pt-4">
+    <form class="pt-4" #myForm="ngForm">
         <div class="form-group">
             <label>Name</label>
             <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter name" name="name"
-                [(ngModel)]="student.name">
+                [(ngModel)]="student.name" required #name="ngModel">
+        </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors.required">
+                Name is required.
+            </div>
         </div>
         <div class="form-group">
             <label>Address</label>
@@ -11,8 +16,8 @@
         </div>
         <div class="form-group">
             <label>Phone number</label>
-            <input type="text" class="form-control" placeholder="Phone number" name="Phonenumber" appInputStudent
-                [(ngModel)]="student.phonenumber">
+            <input type="text" class="form-control" placeholder="Phone number" minlength="10" name="Phonenumber"
+                appInputStudent [(ngModel)]="student.phonenumber">
         </div>
         <div class="form-group">
             <label>Score</label>
@@ -32,8 +37,8 @@
             <p *ngIf="email.errors?.required">Email is a required field!</p>
             <p *ngIf="email.errors?.pattern">This is not a valid Email!!!</p>
         </div>
-        <button type="submit" (click)="submit()" class="btn btn-primary">Submit</button>
-        <button type="submit" [routerLink]="student.id ? ['../../liststudent'] : ['../liststudent']"
+        <button type="submit" [disabled]="!myForm.form.valid" (click)="submit()" class="btn btn-primary">Submit</button>
+        <button (click)="cancel()"
             class="btn btn-primary ml-2">Hủy</button>
     </form>
 </div>
